@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>QUnit Example</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+    <script src="opp1lib.js"></script>
+
+    <script>
+
+        QUnit.test("Date test", function (assert) {
+            const isValid = isDateValid('03.02.2020');
+            assert.equal(isValid, true);
+        });
+
+        QUnit.test("Year 0000 test", function (assert) {
+            const isValid = isDateValid('03.02.0000');
+            assert.equal(isValid, true);
+        });
+
+        QUnit.test("Year 9999 test", function (assert) {
+            const isValid = isDateValid('03.02.9999');
+            assert.equal(isValid, true);
+        });
+        QUnit.test("Input shorter than 10", function (assert) {
+            const isValid = isDateValid('03.02.000');
+            assert.equal(isValid, false);
+        });
+        QUnit.test("Input longer than 10", function (assert) {
+            const isValid = isDateValid('03.02.99999');
+            assert.equal(isValid, false);
+        });
+        QUnit.test("If position 3 is not = .", function (assert) {
+            const isValid = isDateValid('03:02.2020');
+            assert.equal(isValid, false);
+        });
+        QUnit.test("If position 6 is not = .", function (assert) {
+            const isValid = isDateValid('03.02:2020');
+            assert.equal(isValid, false);
+        });
+        QUnit.test("if month outside 1-12", function (assert) {
+            const isValid = isDateValid('03.22.2020');
+            assert.equal(isValid, false);
+        });
+        QUnit.test("if day outside allowed value", function (assert) {
+            const isValid = isDateValid('33.03.2020');
+            assert.equal(isValid, false);
+        });
+
+    </script>
+</body>
+</html>
