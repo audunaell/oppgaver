@@ -37,8 +37,6 @@ function checkday(day, month, year) {
         return (day > 0 && day <= 31);
     } else if (month == 4 || month == 6 || month == 9 || month == 11) {
         return (day > 0 && day <= 30);
-    } else if (month == 4 || month == 6 || month == 9 || month == 11) {
-        return (day > 0 && day <= 30);
     } else if (month == 2) {
         return (day > 0 && day <= 29 && LeapyearCheck == true || day > 0 && day <= 28);
     }
